@@ -15,6 +15,7 @@ var BAR_Y = CLOUD_Y + 240;
 var BAR_MAX_HEIGHT = 150;
 var PLAYER_NAME = 'Вы';
 var PLAYER_BAR_COLOR = 'hsl(0, 100%, 50%)';
+var BLACK_COLOR = '#000000';
 
 var markCloud = function (ctx, x, y, fillColor, strokeColor) {
   ctx.strokeStyle = strokeColor;
@@ -46,20 +47,20 @@ window.renderStatistics = function (ctx, names, times) {
   markCloud(ctx, CLOUD_X + INDENT, CLOUD_Y + INDENT, 'rgba(0, 0, 0, 0.7)', 'rgba(0, 0, 0, 1)');
   markCloud(ctx, CLOUD_X, CLOUD_Y, '#ffffff', 'rgba(0, 0, 0, 1)');
 
-  ctx.fillStyle = '#000000';
+  ctx.fillStyle = BLACK_COLOR;
   ctx.font = '16px PT Mono';
   ctx.fillText('Ура вы победили!', MESSAGE_X, MESSAGE_Y);
   ctx.fillText('Список результатов:', MESSAGE_X, MESSAGE_Y + STRING_HEIGHT);
 
   var maxTime = getMaxElement(times);
-  ctx.fillStyle = '#000000';
+  ctx.fillStyle = BLACK_COLOR;
 
   for (var i = 0; i < names.length; i++) {
 
     ctx.fillText(Math.round(times[i]), BAR_X + (BAR + BAR_INDENT) * i, BAR_Y - INDENT - (BAR_MAX_HEIGHT / maxTime) * times[i]);
     ctx.fillStyle = barColor(names[i]);
     ctx.fillRect(BAR_X + (BAR + BAR_INDENT) * i, BAR_Y, BAR, -+(BAR_MAX_HEIGHT / maxTime) * times[i]);
-    ctx.fillStyle = '#000000';
+    ctx.fillStyle = BLACK_COLOR;
     ctx.fillText(names[i], BAR_X + (BAR + BAR_INDENT) * i, BAR_Y + STRING_HEIGHT);
   }
 };
