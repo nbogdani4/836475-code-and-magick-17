@@ -16,6 +16,7 @@ var BAR_MAX_HEIGHT = 150;
 var PLAYER_NAME = 'Вы';
 var PLAYER_BAR_COLOR = 'hsl(0, 100%, 50%)';
 var BLACK_COLOR = '#000000';
+var WHITE_COLOR = '#ffffff';
 
 var markCloud = function (ctx, x, y, fillColor, strokeColor) {
   ctx.strokeStyle = strokeColor;
@@ -44,8 +45,8 @@ var barColor = function (name) {
 };
 
 window.renderStatistics = function (ctx, names, times) {
-  markCloud(ctx, CLOUD_X + INDENT, CLOUD_Y + INDENT, 'rgba(0, 0, 0, 0.7)', 'rgba(0, 0, 0, 1)');
-  markCloud(ctx, CLOUD_X, CLOUD_Y, '#ffffff', 'rgba(0, 0, 0, 1)');
+  markCloud(ctx, CLOUD_X + INDENT, CLOUD_Y + INDENT, 'rgba(0, 0, 0, 0.7)', BLACK_COLOR);
+  markCloud(ctx, CLOUD_X, CLOUD_Y, WHITE_COLOR, BLACK_COLOR);
 
   ctx.fillStyle = BLACK_COLOR;
   ctx.font = '16px PT Mono';
