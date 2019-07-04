@@ -59,8 +59,11 @@ var inputCoatColor = setup.querySelector('input[name=\'coat-color\']');
 var inputEyesColor = setup.querySelector('input[name=\'eyes-color\']');
 var inputFireballColor = setup.querySelector('input[name=\'fireball-color\']');
 
-// Функция показывает Popup удаляя класс hidden и добавляет слушатель на нажатие клавиатуры
+// Функция показывает Popup удаляя атрибут style и класс hidden и добавляет слушатель на нажатие клавиатуры
 var openPopup = function () {
+  if (setup.getAttribute('style')) {
+    setup.removeAttribute('style');
+  }
   setup.classList.remove('hidden');
   document.addEventListener('keydown', onPopupEscPress);
   setupPlayer.addEventListener('click', processingClicksPlayerSettings);
@@ -93,9 +96,7 @@ var closePopup = function () {
 };
 
 // Обработчик событий вызывает функцию закрытия Popup по клику на крестик
-setupClose.addEventListener('click', function () {
-  closePopup();
-});
+setupClose.addEventListener('click', closePopup);
 
 // Обработчик событий на крестике ловит нажатие клафиши и если это Enter, вызывается функция закрытия Popup
 setupClose.addEventListener('keydown', function (evt) {
@@ -149,3 +150,33 @@ var changeNewFireballColor = function () {
   fireball.style.backgroundColor = newFireballColor;
   inputFireballColor.value = newFireballColor;
 };
+
+(function () {
+  var artifactsShop = setup.querySelector('.setup-artifacts-shop');
+  var dragginArtifact = null;
+
+  artifactsShop.addEventListener('dragstart', function (evt) {
+    if (evt.target.tagName.toLowerCase() === 'img') {
+      dragginArtifact = evt.target;
+    }
+  });
+
+  var artifactsBag = setup.querySelector('.setup-artifacts');
+
+  artifactsBag.addEventListener('dragover', function (evt) {
+    evt.preventDefault();
+  });
+
+  artifactsBag.addEventListener('dragenter', function (evt) {
+    evt.target.style.backgroundColor = 'yellow';
+  });
+
+  artifactsBag.addEventListener('dragleave', function (evt) {
+    evt.target.style.backgroundColor = '';
+  });
+
+  artifactsBag.addEventListener('drop', function (evt) {
+    evt.target.appendChild(dragginArtifact);
+    evt.target.style.backgroundColor = '';
+  });
+})();
