@@ -118,37 +118,27 @@ setupUserName.addEventListener('invalid', function () {
   }
 });
 
-// Проверяем на какой объект был клик, и при совпадении вызываем нужную фунуцию
+// Фуккция перекрашивает элемент
+var colorizeClickedElement = function (colorArray, element, inputElement, svg) {
+  var newColor = getRandomValue(colorArray);
+  inputElement.value = newColor;
+  if (svg === true) {
+    element.style = 'fill: ' + newColor;
+    return;
+  }
+  element.style.backgroundColor = newColor;
+};
+
+// Проверяем на какой объект был клик, и при совпадении вызываем фунуцию с нужными значениями
 var processingClicksPlayerSettings = function () {
   var target = event.target;
   if (target.getAttribute('class') === CLASS_WIZARD_COAT) {
-    changeNewCoatColor();
+    colorizeClickedElement(COAT_COLOR, wizardCoat, inputCoatColor, true);
   } else if (target.getAttribute('class') === CLASS_WIZARD_EYES) {
-    changeNewEyesColor();
+    colorizeClickedElement(EYES_COLOR, wizardEyes, inputEyesColor, true);
   } else if (target.getAttribute('class') === CLASS_WIZARD_FIREBALL) {
-    changeNewFireballColor();
+    colorizeClickedElement(FIREBALL_COLOR, fireball, inputFireballColor, false);
   }
-};
-
-// Генерируем случайный цвет, перекрашиваем мантию и добавляем цвет в скрытое поле формы
-var changeNewCoatColor = function () {
-  var newCoatColor = getRandomValue(COAT_COLOR);
-  wizardCoat.style = 'fill: ' + newCoatColor;
-  inputCoatColor.value = newCoatColor;
-};
-
-// Генерируем случайный цвет, перекрашиваем глаза и добавляем цвет в скрытое поле формы
-var changeNewEyesColor = function () {
-  var newEyesColor = getRandomValue(EYES_COLOR);
-  wizardEyes.style = 'fill: ' + newEyesColor;
-  inputEyesColor.value = newEyesColor;
-};
-
-// Генерируем случайный цвет, перекрашиваем fireball и добавляем цвет в скрытое поле формы
-var changeNewFireballColor = function () {
-  var newFireballColor = getRandomValue(FIREBALL_COLOR);
-  fireball.style.backgroundColor = newFireballColor;
-  inputFireballColor.value = newFireballColor;
 };
 
 (function () {
