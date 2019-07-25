@@ -71,9 +71,18 @@
     document.body.insertAdjacentElement('afterbegin', node);
   };
 
+  var onLoad = function () {
+    submitButton.disabled = false;
+    submitButton.textContent = 'Сохранить';
+    window.dialog.closePopup();
+  };
+
   var form = setupDialog.querySelector('.setup-wizard-form');
+  var submitButton = setupDialog.querySelector('.setup-submit');
   form.addEventListener('submit', function (evt) {
-    window.backend.save(new FormData(form), window.dialog.closePopup, onError);
+    submitButton.disabled = true;
+    submitButton.textContent = 'Сохраняю...';
+    window.backend.save(new FormData(form), onLoad, onError);
     evt.preventDefault();
   });
 

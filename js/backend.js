@@ -1,8 +1,7 @@
 'use strict';
 (function () {
 
-  var URL_LOAD = 'https://js.dump.academy/code-and-magick/data';
-  var URL_SAVE = 'https://js.dump.academy/code-and-magick';
+  var URL = 'https://js.dump.academy/code-and-magick';
 
   var load = function (onLoad, onError) {
     var xhr = new XMLHttpRequest();
@@ -27,7 +26,7 @@
 
     xhr.timeout = 10000;
 
-    xhr.open('GET', URL_LOAD);
+    xhr.open('GET', URL + '/data');
     xhr.send();
   };
 
@@ -54,7 +53,7 @@
 
     xhr.timeout = 10000;
 
-    xhr.open('POST', URL_SAVE);
+    xhr.open('POST', URL);
     xhr.send(data);
   };
 
