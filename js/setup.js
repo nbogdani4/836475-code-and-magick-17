@@ -31,7 +31,7 @@
   var colorizeClickedElement = function (colorArray, element, inputElement, svg) {
     var newColor = getRandomValue(colorArray);
     inputElement.value = newColor;
-    if (svg === true) {
+    if (svg) {
       element.style = 'fill: ' + newColor;
       return;
     }
