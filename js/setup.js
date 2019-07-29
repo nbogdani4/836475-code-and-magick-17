@@ -82,7 +82,7 @@
   form.addEventListener('submit', function (evt) {
     submitButton.disabled = true;
     submitButton.textContent = 'Сохраняю...';
-    window.backend.save(new FormData(form), onLoad, onError);
+    window.backend.request('POST', onLoad, onError, window.backend.URL, new FormData(form));
     evt.preventDefault();
   });
 

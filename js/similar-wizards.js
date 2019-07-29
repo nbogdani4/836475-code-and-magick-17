@@ -25,6 +25,6 @@
     document.querySelector('.setup-similar').classList.remove('hidden');
   };
 
-  window.backend.load(onLoad, window.setup.onError);
+  window.backend.request('GET', onLoad, window.setup.onError, window.backend.URL + '/data');
 
 })();
